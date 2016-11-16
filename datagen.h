@@ -16,8 +16,13 @@ public:
 		
 		di.fEOF = (iRow >= cRow);
 		if (!di.fEOF) {
-			di.data.push_back(iRow);
-			di.data.push_back(iRow/7);
+			DataValue val;
+			val.type = INT;
+			val.intVal = iRow;
+			di.data.push_back(val);
+			val.type = INT;
+			val.intVal = iRow/7;
+			di.data.push_back(val);
 			iRow++;
 		}
 		return di;
