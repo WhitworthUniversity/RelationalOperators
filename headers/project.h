@@ -38,7 +38,11 @@ public:
 		input->open();
 		if (dupelim)
 		{
-			readentireinput(input, cached, icached);
+			vector<DataItem> tempcache;
+			readentireinput(input, tempcache, icached);
+			//Project out the unwanted attributes
+			for (auto i = tempcache.begin(); i != tempcache.end(); i++)
+				cached.push_back(project(*i));
 			sort(cached.begin(), cached.end(), DataItem::lessthan);
 			unique(cached.begin(), cached.end(), DataItem::equals);
 		}
